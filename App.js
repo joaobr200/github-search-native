@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+import AppNavigation from "./routes/AppNavigation";
 import {
   useFonts,
   Roboto_400Regular,
@@ -22,20 +22,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Github Search</Text>
-      <Feather name="FiGithub" />
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <NavigationContainer>
+        <AppNavigation />
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#000",
-    color: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
