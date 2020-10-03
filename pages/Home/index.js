@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-import SearchUser from "../../components/SearchUser";
-import SearchRepo from "../../components/SearchRepo";
-import Favorites from "../../components/Favorites";
+import SearchUser from "./SearchUser";
+import SearchRepo from "./SearchRepo";
+import Favorites from "./Favorites";
 
 function Home() {
   const Tab = createBottomTabNavigator();
@@ -29,7 +29,7 @@ function Home() {
       })}
       tabBarOptions={{
         activeTintColor: "#fff",
-        inactiveTintColor: "#D3D3D3",
+        inactiveTintColor: "#e1e1e6",
         tabStyle: {
           backgroundColor: "#4F4F4F",
           alignItems: "center",

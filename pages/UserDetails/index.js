@@ -1,16 +1,31 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Profile from "./Profile";
 import Repos from "./Repos";
 
 const UserDetails = () => {
-  const Stack = createStackNavigator();
+  const Tab = createMaterialTopTabNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Repos" component={Repos} />
-    </Stack.Navigator>
+    <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: "#fff",
+          inactiveTintColor: "#e1e1e6",
+          style:{
+            backgroundColor: "#000"
+          },
+          labelStyle: {
+            activeTintColor: "#fff",
+            inactiveTintColor: "#e1e1e6"
+          },
+          indicatorStyle: {
+            backgroundColor: "#fff"
+          }
+        }}
+    >
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Repos" component={Repos} />
+    </Tab.Navigator>
   );
 };
 

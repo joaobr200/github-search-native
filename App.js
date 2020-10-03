@@ -1,5 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { AppContextProvider } from "./context/AppContext"
+import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigation from "./routes/AppNavigation";
 import {
@@ -22,11 +23,11 @@ export default function App() {
   }
 
   return (
-    <>
+    <AppContextProvider>
       <NavigationContainer>
         <AppNavigation />
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
       </NavigationContainer>
-    </>
+    </AppContextProvider>
   );
 }
