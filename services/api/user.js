@@ -1,7 +1,7 @@
 import apisauce from "apisauce";
 
-const api = apisauce.create({
+const user = apisauce.create({
   baseURL: "https://api.github.com/users",
-})
+});
 
-export default api;
+export default user;

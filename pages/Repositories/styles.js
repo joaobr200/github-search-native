@@ -6,6 +6,18 @@ export const Container = styled.View`
   background: #1c1c1c;
 `;
 
+export const Header = styled.View`
+  background: #000;
+  padding: 6px;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const HeaderText = styled.Text`
+  color: ${({ theme }) => theme.colors.gray200};
+  font-size: 18px;
+`;
+
 export const RepoWrapper = styled.View`
   width: 100%;
   margin: 15px 0 15px 0;

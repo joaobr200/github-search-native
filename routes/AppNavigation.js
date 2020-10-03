@@ -1,23 +1,40 @@
 import React from "react";
-import {AppContext} from "../context/AppContext";
+import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+
+import CustomHeader from "../components/CustomHeader";
 
 import Home from "../pages/Home";
 import UserDetails from "../pages/UserDetails";
-
+import Repositories from "../pages/Repositories";
 
 function AppNavigation() {
   const Stack = createStackNavigator();
-  const ctx = React.useContext(AppContext);
   return (
     <>
-    <Stack.Navigator initialRouteName="Home"
-      headerMode=""
-
-    >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="UserDetails" component={UserDetails}  />
-    </Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            header: () => <View />,
+          }}
+        />
+        <Stack.Screen
+          name="UserDetails"
+          component={UserDetails}
+          options={{
+            header: () => <CustomHeader />,
+          }}
+        />
+        <Stack.Screen
+          name="Repositories"
+          component={Repositories}
+          options={{
+            header: () => <CustomHeader />,
+          }}
+        />
+      </Stack.Navigator>
     </>
   );
 }

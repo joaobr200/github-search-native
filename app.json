@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "github-search-native",
+    "name": "Github Search",
     "slug": "github-search-native",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,16 +8,15 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1c1c1c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.joaobr200.githubsearch",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
