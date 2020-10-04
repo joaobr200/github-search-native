@@ -22,7 +22,7 @@ function Repos() {
 
   return (
     <Container>
-      <ScrollView style={{ marginHorizontal: 20 }}>
+      <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false} >
         {userRepos &&
           userRepos.map(
             ({

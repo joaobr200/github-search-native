@@ -8,6 +8,8 @@ import {
   Container,
   Header,
   HeaderText,
+  RepoNotFoundView,
+  RepoNotFoundText,
   RepoWrapper,
   Owner,
   RepoName,
@@ -23,19 +25,17 @@ const Repositories = () => {
   const { repositories } = React.useContext(AppContext);
   return (
     <>
+    {repositories.total_count > 0 && (
       <Header>
-        {repositories.total_count > 0 && (
           <HeaderText>
             {repositories.total_count} Repositories Founds{" "}
           </HeaderText>
-        )}
       </Header>
+        )}
       <Container>
-        <ScrollView style={{ marginHorizontal: 20 }}>
-          {!repositories.total_count > 0 ? (
-            <Text>Nenhum Repostório encontrado</Text>
-          ) : (
-            repositories.items.map(
+          {repositories.total_count > 0 ?
+          <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}  >
+          {repositories.items.map(
               ({
                 name,
                 description,
@@ -83,9 +83,10 @@ const Repositories = () => {
                   </Info>
                 </RepoWrapper>
               )
-            )
-          )}
-        </ScrollView>
+            )}
+        </ScrollView> :  <RepoNotFoundView>
+              <RepoNotFoundText>No repository found</RepoNotFoundText>
+            </RepoNotFoundView>}
       </Container>
     </>
   );

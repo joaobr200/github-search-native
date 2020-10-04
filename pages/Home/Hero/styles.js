@@ -1,8 +1,10 @@
 import styled from "styled-components/native";
 
+
 export const Container = styled.View`
   flex: 1;
   align-items: center;
+  justify-content:space-evenly;
   background: ${({ theme }) => theme.background};
 `;
 
@@ -14,7 +16,6 @@ export const Title = styled.Text`
 `;
 
 export const ButtonView = styled.View`
-  padding-top: 150px;
 `;
 
 export const Button = styled.TouchableOpacity`

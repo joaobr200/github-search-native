@@ -6,6 +6,8 @@ import searchRepoSchema from "../../../schemas/SearchRepoSchema";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
 import Input from "../../../components/Input";
+import Loading from "../../../components/Loading";
+import ResponseErrorPopUp from "../../../components/ResponseErrorPopUp";
 import {
   Container,
   Title,
@@ -29,7 +31,10 @@ function SearchUser() {
 
   return (
     <Container>
-      <Title>Github Search</Title>
+      {loadRepositoriesState.error && <ResponseErrorPopUp text={loadRepositoriesState.error} />}
+      {loadRepositoriesState.loading ? <Loading/> :
+        <>
+            <Title>Github Search</Title>
       <Wrapper>
         <InputReference>Repositories</InputReference>
         <Formik
@@ -61,6 +66,8 @@ function SearchUser() {
           )}
         </Formik>
       </Wrapper>
+        </>
+      }
     </Container>
   );
 }

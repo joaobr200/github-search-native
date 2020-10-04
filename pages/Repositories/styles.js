@@ -2,6 +2,8 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
+  align-items: center;
+  justify-content:center;
   padding: 15px;
   background: #1c1c1c;
 `;
@@ -17,6 +19,20 @@ export const HeaderText = styled.Text`
   color: ${({ theme }) => theme.colors.gray200};
   font-size: 18px;
 `;
+
+export const RepoNotFoundView = styled.View`
+      flex:1;
+      align-items:center;
+      justify-content:center;   
+`
+
+export const RepoNotFoundText = styled.Text`
+      font-size:32px;
+      font-weight:700;
+
+      color:${({theme}) => theme.colors.gray200};
+      opacity:0.7;
+`
 
 export const RepoWrapper = styled.View`
   width: 100%;

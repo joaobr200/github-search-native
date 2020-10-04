@@ -10,7 +10,7 @@ const AppContextProvider = ({ children }) => {
   const [repositories, setRepositories] = React.useState();
 
   const [loadProfileState, setLoadProfileState] = React.useState({
-    loading: true,
+    loading: false,
     error: "",
     success: false,
   });
@@ -22,36 +22,67 @@ const AppContextProvider = ({ children }) => {
   });
 
   async function loadUserProfile(user, navigation) {
-    setLoadProfileState({
-      ...loadProfileState,
-      error: "",
-      loading: true,
-      success: false,
-    });
-
-    const response = await apiUser.get(`/${user}`);
-
-    if (!response.ok) {
+    try {
+      setUserProfile("");
       setLoadProfileState({
         ...loadProfileState,
-        error: "Cannot find this user",
-        loading: false,
+        error: "",
+        loading: true,
         success: false,
       });
+  
+      const response = await apiUser.get(`/${user}`);
+
+      console.log(response);
+  
+      if (response.status === 404) {
+         setLoadProfileState({
+          ...loadProfileState,
+          error: "User not found",
+          loading: false,
+          success: false,
+        });
+        return;
+      }
+
+      if (!response.status) {
+        setLoadProfileState({
+         ...loadProfileState,
+         error: "Network error",
+         loading: false,
+         success: false,
+       });
+       return;
+     }
+  
+      
+      if(response.status === 200) {
+        setLoadProfileState({
+          ...loadProfileState,
+          error: "",
+          loading: false,
+          success: true,
+        });
+    
+        setUserProfile(response.data);
+        navigation.navigate("UserDetails");
+      }
+      
+    } catch (error) {
+      if(error) {
+        setLoadProfileState({
+          ...loadProfileState,
+          error: "Unsexpected error",
+          loading: false,
+          success: false,
+        });
+        return;
+      }
     }
-
-    setLoadProfileState({
-      ...loadProfileState,
-      error: "",
-      loading: false,
-      success: true,
-    });
-
-    setUserProfile(response.data);
-    navigation.navigate("UserDetails");
   }
 
   async function loadUserRepos(user) {
+    setUserRepos("");
     const response = await apiUser.get(`/${user}/repos`);
 
     if (response.ok) {
@@ -60,33 +91,57 @@ const AppContextProvider = ({ children }) => {
   }
 
   async function loadRepositories(repositorie, navigation) {
-    setLoadRepositoriesState({
-      ...loadRepositoriesState,
-      error: "",
-      loading: true,
-      success: false,
-    });
-
-    const response = await apiSearch.get(`/repositories?q=${repositorie}`);
-
-    if (!response.ok) {
+    try {
+      setRepositories("");
       setLoadRepositoriesState({
         ...loadRepositoriesState,
-        error: "Cannot find repositoires",
-        loading: false,
+        error: "",
+        loading: true,
         success: false,
       });
+  
+      const response = await apiSearch.get(`/repositories?q=${repositorie}`);
+  
+      if (response.status === 404) {
+        setLoadRepositoriesState({
+          ...loadRepositoriesState,
+          error: "Repositories not found",
+          loading: false,
+          success: false,
+        });
+      }
+
+      if (!response.status) {
+        setLoadRepositoriesState({
+          ...loadRepositoriesState,
+          error: "Network error",
+          loading: false,
+          success: false,
+        });
+      }
+  
+      if(response.status === 200) {
+        setLoadRepositoriesState({
+          ...loadRepositoriesState,
+          error: "",
+          loading: false,
+          success: true,
+        });
+    
+        setRepositories(response.data);
+        navigation.navigate("Repositories");
+      }
+    } catch (error) {
+      if(error) {
+        setLoadRepositoriesState({
+          ...loadRepositoriesState,
+          error: "Unsexpected error",
+          loading: false,
+          success: false,
+        });
+      }
+      
     }
-
-    setLoadRepositoriesState({
-      ...loadRepositoriesState,
-      error: "",
-      loading: false,
-      success: true,
-    });
-
-    setRepositories(response.data);
-    navigation.navigate("Repositories");
   }
 
   return (

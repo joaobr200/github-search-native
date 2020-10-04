@@ -6,7 +6,7 @@ import { Container } from "./styles";
 const Loading = () => {
   return (
     <Container>
-      <Spinner isVisible={true} textContent="Loading..." />
+      <Spinner color="#E1E1E6"  animation="slide"  />
     </Container>
   );
 };
