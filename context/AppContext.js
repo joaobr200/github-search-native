@@ -1,85 +1,17 @@
 import React from "react";
 import apiUser from "../services/api/user";
-import apiSearch from "../services/api/search";
 
 const AppContext = React.createContext();
 
 const AppContextProvider = ({ children }) => {
   const [userRepos, setUserRepos] = React.useState();
   const [userProfile, setUserProfile] = React.useState();
-  const [repositories, setRepositories] = React.useState();
 
   const [loadProfileState, setLoadProfileState] = React.useState({
     loading: false,
     error: "",
     success: false,
   });
-
-  const [loadRepositoriesState, setLoadRepositoriesState] = React.useState({
-    loading: false,
-    error: "",
-    success: false,
-  });
-
-  async function loadUserProfile(user, navigation) {
-    try {
-      setUserProfile("");
-      setLoadProfileState({
-        ...loadProfileState,
-        error: "",
-        loading: true,
-        success: false,
-      });
-  
-      const response = await apiUser.get(`/${user}`);
-
-      console.log(response);
-  
-      if (response.status === 404) {
-         setLoadProfileState({
-          ...loadProfileState,
-          error: "User not found",
-          loading: false,
-          success: false,
-        });
-        return;
-      }
-
-      if (!response.status) {
-        setLoadProfileState({
-         ...loadProfileState,
-         error: "Network error",
-         loading: false,
-         success: false,
-       });
-       return;
-     }
-  
-      
-      if(response.status === 200) {
-        setLoadProfileState({
-          ...loadProfileState,
-          error: "",
-          loading: false,
-          success: true,
-        });
-    
-        setUserProfile(response.data);
-        navigation.navigate("UserDetails");
-      }
-      
-    } catch (error) {
-      if(error) {
-        setLoadProfileState({
-          ...loadProfileState,
-          error: "Unsexpected error",
-          loading: false,
-          success: false,
-        });
-        return;
-      }
-    }
-  }
 
   async function loadUserRepos(user) {
     setUserRepos("");
@@ -90,57 +22,60 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
-  async function loadRepositories(repositorie, navigation) {
+  async function loadUserProfile(user, navigation) {
     try {
-      setRepositories("");
-      setLoadRepositoriesState({
-        ...loadRepositoriesState,
+      setUserProfile("");
+      setLoadProfileState({
+        ...loadProfileState,
         error: "",
         loading: true,
         success: false,
       });
-  
-      const response = await apiSearch.get(`/repositories?q=${repositorie}`);
-  
+
+      const response = await apiUser.get(`/${user}`);
+
       if (response.status === 404) {
-        setLoadRepositoriesState({
-          ...loadRepositoriesState,
-          error: "Repositories not found",
+        setLoadProfileState({
+          ...loadProfileState,
+          error: "User not found",
           loading: false,
           success: false,
         });
+        return;
       }
 
       if (!response.status) {
-        setLoadRepositoriesState({
-          ...loadRepositoriesState,
+        setLoadProfileState({
+          ...loadProfileState,
           error: "Network error",
           loading: false,
           success: false,
         });
+        return;
       }
-  
-      if(response.status === 200) {
-        setLoadRepositoriesState({
-          ...loadRepositoriesState,
+
+      if (response.status === 200) {
+        setLoadProfileState({
+          ...loadProfileState,
           error: "",
           loading: false,
           success: true,
         });
-    
-        setRepositories(response.data);
-        navigation.navigate("Repositories");
+
+        setUserProfile(response.data);
+        navigation.navigate("UserDetails");
+        await loadUserRepos(user);
       }
     } catch (error) {
-      if(error) {
-        setLoadRepositoriesState({
-          ...loadRepositoriesState,
+      if (error) {
+        setLoadProfileState({
+          ...loadProfileState,
           error: "Unsexpected error",
           loading: false,
           success: false,
         });
+        return;
       }
-      
     }
   }
 
@@ -152,9 +87,6 @@ const AppContextProvider = ({ children }) => {
         loadUserRepos,
         userProfile,
         userRepos,
-        loadRepositoriesState,
-        loadRepositories,
-        repositories,
       }}
     >
       {children}

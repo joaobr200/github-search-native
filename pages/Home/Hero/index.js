@@ -9,9 +9,7 @@ const Hero = ({ navigation }) => {
   return (
     <Container>
       <Title>Github Search</Title>
-      <ButtonView 
-
-      >
+      <ButtonView>
         <Button onPress={() => handleClickNavigate("SearchUser")}>
           <ButtonText>Search User</ButtonText>
         </Button>

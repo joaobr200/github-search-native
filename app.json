@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#1c1c1c"
     },
     "updates": {
@@ -16,7 +16,10 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.joaobr200.githubsearch",
-      "versionCode": 1
+      "versionCode": 1,
+      "splash": {
+        "backgroundColor": "#1c1c1c"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

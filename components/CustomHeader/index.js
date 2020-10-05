@@ -15,11 +15,11 @@ const CustomHeader = () => {
     <Container>
       <AntDesign
         name="left"
-        size={26}
+        size={32}
         color="#fff"
         onPress={handleClickGoBack}
       />
-      <Image source={{ uri: logo }} />
+      <Image source={logo} />
     </Container>
   );
 };

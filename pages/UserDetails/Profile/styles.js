@@ -20,7 +20,7 @@ export const Panel = styled.View`
 export const Avatar = styled.Image`
   width: 120px;
   height: 120px;
-  border-radius: 50%;
+  border-radius: 60px;
 
   background: #c3c3c3;
 `;

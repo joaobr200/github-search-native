@@ -1,6 +1,6 @@
 import React from "react";
 import { AppContext } from "../../../context/AppContext";
-import { SafeAreaView, ScrollView, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import GetLanguageIcon from "../../../utils/getLanguageIcon";
 
@@ -22,7 +22,10 @@ function Repos() {
 
   return (
     <Container>
-      <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false} >
+      <ScrollView
+        style={{ marginHorizontal: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
         {userRepos &&
           userRepos.map(
             ({
@@ -65,10 +68,10 @@ function Repos() {
                       {watchers}
                     </Text>
                   </Status>
-                  <Text>
+                  {/* <Text>
                     <GetLanguageIcon lang={language ? language : ""} />{" "}
                     {fork ? "Forked" : language}
-                  </Text>
+                  </Text> */}
                 </Info>
               </RepoWrapper>
             )

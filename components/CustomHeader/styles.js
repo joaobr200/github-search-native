@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export const Container = styled.View`
-  padding: 8px;
+  padding: ${getStatusBarHeight(false)}px 8px 8px 8px;
 
   align-items: center;
   justify-content: space-between;

@@ -38,22 +38,14 @@ function Profile({ navigation }) {
               <InfoLogin>@{userProfile.login}</InfoLogin>
               <Follows>
                 <FollowsText>
-                  Following{" "}
-                  <FollowsText style={{ display: "block" }}>
-                    {userProfile.following}
-                  </FollowsText>
+                  Following <FollowsText>{userProfile.following}</FollowsText>
                 </FollowsText>
                 <FollowsText>
-                  Followers{" "}
-                  <FollowsText style={{ display: "block" }}>
-                    {userProfile.followers}
-                  </FollowsText>
+                  Followers <FollowsText>{userProfile.followers}</FollowsText>
                 </FollowsText>
                 <FollowsText>
                   Repositories{" "}
-                  <FollowsText style={{ display: "block" }}>
-                    {userProfile.public_repos}
-                  </FollowsText>
+                  <FollowsText>{userProfile.public_repos}</FollowsText>
                 </FollowsText>
               </Follows>
             </Info>

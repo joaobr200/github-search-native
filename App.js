@@ -10,17 +10,26 @@ import {
   Roboto_500Medium,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
-import { AppLoading } from "expo";
 
 export default function App() {
+  const [appReady, setAppReady] = React.useState(false);
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
     Roboto_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  async function initAsync() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+  }
+
+  if (!appReady || !fontsLoaded) {
+    initAsync().then(() => setAppReady(true));
+    return null;
   }
 
   return (

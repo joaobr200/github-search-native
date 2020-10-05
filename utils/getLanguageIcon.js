@@ -29,15 +29,15 @@ function getLanguageIcon({ lang }) {
   const formatLang = lang.toLowerCase();
   switch (formatLang) {
     case "typescript":
-      return <LangIcon source={{ uri: TSIcon }} />;
+      return <LangIcon source={TSIcon} />;
     case "javascript":
-      return <LangIcon source={{ uri: JSIcon }} />;
+      return <LangIcon source={JSIcon} />;
     case "css":
-      return <LangIcon source={{ uri: CSSIcon }} />;
+      return <LangIcon source={CSSIcon} />;
     case "html":
-      return <LangIcon source={{ uri: HTMLIcon }} />;
+      return <LangIcon source={HTMLIcon} />;
     case "php":
-      return <LangIcon source={{ uri: PHPIcon }} />;
+      return <LangIcon source={PHPIcon} />;
     default:
       return <DefaultIcon />;
   }
